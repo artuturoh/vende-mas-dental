@@ -601,63 +601,117 @@ export default function App() {
           </div>
 
           {/* TABLA DE LOS 3 PAQUETES DE VENDE+ DIGITAL */}
-          <div className="grid md:grid-cols-3 gap-6">
-            {/* Paquete Básico */}
-            <div className="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 flex flex-col justify-between">
-              <div className="space-y-4">
-                <span className="text-xs font-bold uppercase text-slate-400">1. Paquete Básico</span>
-                <h4 className="text-xl font-bold">Presencia & Agenda 24/7</h4>
-                <p className="text-xs text-slate-300">Ideal para modernizar la recepción digital de la clínica.</p>
-                <div className="pt-2 border-t border-slate-700">
-                  <p className="text-2xl font-extrabold">$6,000 <span className="text-xs font-normal text-slate-400">MXN Setup</span></p>
-                  <p className="text-xs text-emerald-400 font-semibold mt-1">+ $950 MXN / mes (Hosting y soporte)</p>
+          <div className="space-y-6">
+            {/* BANNER PRECIO FUNDADOR */}
+            <div className="bg-gradient-to-r from-amber-500/10 via-emerald-500/10 to-blue-500/10 border border-emerald-500/30 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <span className="p-2 bg-emerald-500/20 text-emerald-400 rounded-xl">
+                  <Sparkles className="w-5 h-5"/>
+                </span>
+                <div>
+                  <h5 className="font-bold text-white text-sm sm:text-base flex flex-wrap items-center gap-2">
+                    Lanzamiento Oficial: Programa "Precio Fundador"
+                    <span className="text-[11px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2.5 py-0.5 rounded-full font-semibold">
+                      Limitado a las primeras 5 clínicas
+                    </span>
+                  </h5>
+                  <p className="text-xs text-slate-300 mt-0.5">
+                    Tarifa preferencial especial a cambio de testimonio en video, caso de éxito en portafolio y reseña en Google.
+                  </p>
                 </div>
-                <ul className="space-y-2.5 text-xs text-slate-300 pt-3">
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400"/> Landing Page Premium personalizada</li>
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400"/> Agenda automatizada 24/7</li>
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400"/> Posicionamiento local en Google Maps</li>
-                </ul>
               </div>
             </div>
 
-            {/* Paquete Intermedio (Estrella) */}
-            <div className="bg-gradient-to-b from-blue-900/60 to-slate-800 border-2 border-blue-500 rounded-2xl p-6 flex flex-col justify-between relative shadow-xl">
-              <span className="absolute -top-3 right-6 bg-blue-500 text-white text-[11px] font-bold px-3 py-0.5 rounded-full">
-                MÁS ELEGIDO EN ZMG
-              </span>
-              <div className="space-y-4">
-                <span className="text-xs font-bold uppercase text-blue-300">2. Paquete Máquina de Ventas</span>
-                <h4 className="text-xl font-bold">Cotizador + WhatsApp CRM + Ads</h4>
-                <p className="text-xs text-slate-300">El sistema completo que estás probando en esta página.</p>
-                <div className="pt-2 border-t border-slate-700">
-                  <p className="text-2xl font-extrabold">$13,500 <span className="text-xs font-normal text-slate-300">MXN Setup</span></p>
-                  <p className="text-xs text-emerald-400 font-semibold mt-1">+ $3,800 MXN / mes (Ads + Motor WhatsApp)</p>
+            <div className="grid md:grid-cols-3 gap-6">
+              {/* Paquete Básico */}
+              <div className="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase text-slate-400">1. Paquete Básico</span>
+                    <span className="text-[10px] bg-slate-700 text-emerald-300 px-2 py-0.5 rounded font-semibold">Precio Fundador</span>
+                  </div>
+                  <h4 className="text-xl font-bold">Presencia y Agenda</h4>
+                  <p className="text-xs text-slate-300">Ideal para modernizar la recepción digital de la clínica.</p>
+                  <div className="pt-2 border-t border-slate-700">
+                    <div className="flex items-baseline gap-2">
+                      <p className="text-2xl font-extrabold text-white">$5,000 <span className="text-xs font-normal text-slate-400">MXN Setup</span></p>
+                      <span className="text-xs text-slate-400 line-through">Reg. $9,000</span>
+                    </div>
+                    <div className="mt-1 flex items-baseline gap-1.5 text-xs text-emerald-400 font-semibold">
+                      <span>+ $950 MXN / mes</span>
+                      <span className="text-slate-400 line-through font-normal">(Reg. $1,990/mes)</span>
+                    </div>
+                  </div>
+                  <ul className="space-y-2.5 text-xs text-slate-300 pt-3">
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> Landing Page Premium personalizada</li>
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> Agenda automatizada 24/7</li>
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> Posicionamiento local en Google Maps</li>
+                  </ul>
                 </div>
-                <ul className="space-y-2.5 text-xs text-slate-200 pt-3">
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400"/> <strong>Cotizador interactivo de Seguros</strong> (Dentegra, Centauro)</li>
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400"/> Pasarela de pagos con MSI bancarios</li>
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400"/> <strong>Base de datos + Reactivación WhatsApp</strong></li>
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400"/> Gestión mensual de campañas en Google/Meta Ads</li>
-                </ul>
+              </div>
+
+              {/* Paquete Intermedio (Estrella) */}
+              <div className="bg-gradient-to-b from-blue-900/60 to-slate-800 border-2 border-blue-500 rounded-2xl p-6 flex flex-col justify-between relative shadow-xl">
+                <span className="absolute -top-3 right-6 bg-blue-500 text-white text-[11px] font-bold px-3 py-0.5 rounded-full shadow-md">
+                  MÁS ELEGIDO EN ZMG
+                </span>
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase text-blue-300">2. Paquete Máquina de Ventas</span>
+                    <span className="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded font-semibold">Precio Fundador</span>
+                  </div>
+                  <h4 className="text-xl font-bold">Cotizador + WhatsApp CRM + Ads</h4>
+                  <p className="text-xs text-slate-300">El sistema completo que estás probando en esta página.</p>
+                  <div className="pt-2 border-t border-slate-700">
+                    <div className="flex items-baseline gap-2">
+                      <p className="text-2xl font-extrabold text-white">$12,000 <span className="text-xs font-normal text-slate-300">MXN Setup</span></p>
+                      <span className="text-xs text-slate-400 line-through">Reg. $20,000</span>
+                    </div>
+                    <div className="mt-1 flex items-baseline gap-1.5 text-xs text-emerald-400 font-semibold">
+                      <span>+ $3,500 MXN / mes</span>
+                      <span className="text-slate-400 line-through font-normal">(Reg. $8,900/mes)</span>
+                    </div>
+                  </div>
+                  <ul className="space-y-2.5 text-xs text-slate-200 pt-3">
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> <strong>Cotizador interactivo de Seguros</strong> (Dentegra, Centauro)</li>
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> Pasarela de pagos con MSI bancarios</li>
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> <strong>Base de datos + Reactivación WhatsApp</strong></li>
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> Gestión mensual de campañas en Google/Meta Ads</li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* Paquete Premium */}
+              <div className="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold uppercase text-amber-400">3. Paquete Dominio Total</span>
+                    <span className="text-[10px] bg-slate-700 text-emerald-300 px-2 py-0.5 rounded font-semibold">Precio Fundador</span>
+                  </div>
+                  <h4 className="text-xl font-bold">Dominio Total y Producción Visual</h4>
+                  <p className="text-xs text-slate-300">Para clínicas que buscan ser el referente visual #1 de su zona.</p>
+                  <div className="pt-2 border-t border-slate-700">
+                    <div className="flex items-baseline gap-2">
+                      <p className="text-2xl font-extrabold text-white">$19,000 <span className="text-xs font-normal text-slate-400">MXN Setup</span></p>
+                      <span className="text-xs text-slate-400 line-through">Reg. $35,000</span>
+                    </div>
+                    <div className="mt-1 flex items-baseline gap-1.5 text-xs text-emerald-400 font-semibold">
+                      <span>+ $4,500 MXN / mes</span>
+                      <span className="text-slate-400 line-through font-normal">(Reg. $9,900/mes)</span>
+                    </div>
+                  </div>
+                  <ul className="space-y-2.5 text-xs text-slate-300 pt-3">
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> Todo lo incluido en Máquina de Ventas</li>
+                    <li className="flex items-center gap-2"><Camera className="w-4 h-4 text-amber-400 shrink-0"/> <strong>Sesión presencial de foto y video DSLR</strong> en tu clínica</li>
+                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> Creativos publicitarios con tu equipo real</li>
+                  </ul>
+                </div>
               </div>
             </div>
 
-            {/* Paquete Premium */}
-            <div className="bg-slate-800/60 border border-slate-700 rounded-2xl p-6 flex flex-col justify-between">
-              <div className="space-y-4">
-                <span className="text-xs font-bold uppercase text-amber-400">3. Paquete Dominio Total</span>
-                <h4 className="text-xl font-bold">Software + Producción Fotográfica</h4>
-                <p className="text-xs text-slate-300">Para clínicas que buscan ser el referente visual #1 de su zona.</p>
-                <div className="pt-2 border-t border-slate-700">
-                  <p className="text-2xl font-extrabold">$22,000 <span className="text-xs font-normal text-slate-400">MXN Setup</span></p>
-                  <p className="text-xs text-emerald-400 font-semibold mt-1">+ $4,500 MXN / mes (Gestión Total)</p>
-                </div>
-                <ul className="space-y-2.5 text-xs text-slate-300 pt-3">
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400"/> Todo lo incluido en Máquina de Ventas</li>
-                  <li className="flex items-center gap-2"><Camera className="w-4 h-4 text-amber-400"/> <strong>Sesión presencial de foto y video DSLR</strong> en tu clínica</li>
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400"/> Creativos publicitarios con tu equipo real</li>
-                </ul>
-              </div>
+            {/* NOTA DISCRETA AL PIE DE LA TABLA */}
+            <div className="text-center p-3.5 rounded-xl bg-slate-800/40 border border-slate-700/60 text-xs text-slate-400 max-w-4xl mx-auto leading-relaxed">
+              Precios + IVA • Anticipo 50% al iniciar y 50% a la entrega • Igualas con mínimo de 3 meses • La pauta publicitaria se paga directo a Meta/Google • Permisos COFEPRIS no incluidos.
             </div>
           </div>
 
