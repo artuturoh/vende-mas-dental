@@ -51,6 +51,7 @@ export default function App() {
   const [copied, setCopied] = useState(false);
 
   // Estados del Cotizador y Agenda
+  const [aceptaSeguros, setAceptaSeguros] = useState(true);
   const [aseguradora, setAseguradora] = useState('dentegra');
   const [tratamientoId, setTratamientoId] = useState('endodoncia');
   const [plazoMsi, setPlazoMsi] = useState(6);
@@ -77,7 +78,8 @@ export default function App() {
   , [tratamientoId]);
 
   const seguroActual = TABULADOR[aseguradora];
-  const copagoFinal = Math.round(tratamientoActual.precioBase * (1 - seguroActual.cobertura));
+  const coberturaActiva = aceptaSeguros ? seguroActual.cobertura : 0;
+  const copagoFinal = Math.round(tratamientoActual.precioBase * (1 - coberturaActiva));
   const ahorro = tratamientoActual.precioBase - copagoFinal;
   const aplicaMsi = copagoFinal >= 1500;
   const pagoMensual = aplicaMsi ? Math.round(copagoFinal / plazoMsi) : copagoFinal;
@@ -286,44 +288,75 @@ export default function App() {
           </p>
         </div>
 
+        {/* INTERRUPTOR DE SEGUROS DENTALES */}
+        <div className="max-w-xl mx-auto mb-10 bg-white border border-slate-200 rounded-2xl px-5 py-4 shadow-sm flex items-center justify-between gap-4">
+          <div>
+            <p className="text-sm font-bold text-slate-900">
+              ¿Tu clínica trabaja con seguros dentales?
+            </p>
+            <p className="text-xs text-slate-500 mt-0.5">
+              {aceptaSeguros
+                ? 'Modo con aseguradoras (Dentegra, Centauro, Dentalia y Particular)'
+                : 'Modo directo sin seguros (Solo precios de lista + Meses Sin Intereses)'}
+            </p>
+          </div>
+          <button
+            type="button"
+            role="switch"
+            aria-checked={aceptaSeguros}
+            onClick={() => setAceptaSeguros((prev) => !prev)}
+            className={`relative inline-flex h-7 w-12 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 ${
+              aceptaSeguros ? 'bg-blue-600' : 'bg-slate-300'
+            }`}
+          >
+            <span
+              className={`pointer-events-none inline-block h-6 w-6 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${
+                aceptaSeguros ? 'translate-x-5' : 'translate-x-0'
+              }`}
+            />
+          </button>
+        </div>
+
         <div className="grid lg:grid-cols-12 gap-8 items-start">
           {/* COLUMNA IZQUIERDA: SELECCIÓN DE SEGURO Y TRATAMIENTO */}
           <div className="lg:col-span-7 bg-white p-6 sm:p-8 rounded-2xl shadow-md border border-slate-200 space-y-8">
             {/* Paso 1: Elegir Seguro */}
-            <div>
-              <label className="block text-sm font-bold text-slate-900 mb-3">
-                1. Selecciona tu Aseguradora o Convenio:
-              </label>
-              <div className="grid sm:grid-cols-2 gap-3">
-                {Object.entries(TABULADOR).map(([key, item]) => (
-                  <button
-                    key={key}
-                    type="button"
-                    onClick={() => setAseguradora(key)}
-                    className={`p-3.5 rounded-xl border text-left transition flex flex-col justify-between ${
-                      aseguradora === key
-                        ? 'border-blue-600 bg-blue-50/70 ring-2 ring-blue-600/20'
-                        : 'border-slate-200 hover:border-slate-300 bg-white'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="font-bold text-sm text-slate-900">{item.nombre}</span>
-                      {aseguradora === key && <CheckCircle2 className="w-4 h-4 text-blue-600"/>}
-                    </div>
-                    <span className="text-xs text-blue-600 font-medium mt-1">{item.descuento}</span>
-                  </button>
-                ))}
+            {aceptaSeguros && (
+              <div>
+                <label className="block text-sm font-bold text-slate-900 mb-3">
+                  1. Selecciona tu Aseguradora o Convenio:
+                </label>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {Object.entries(TABULADOR).map(([key, item]) => (
+                    <button
+                      key={key}
+                      type="button"
+                      onClick={() => setAseguradora(key)}
+                      className={`p-3.5 rounded-xl border text-left transition flex flex-col justify-between ${
+                        aseguradora === key
+                          ? 'border-blue-600 bg-blue-50/70 ring-2 ring-blue-600/20'
+                          : 'border-slate-200 hover:border-slate-300 bg-white'
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-bold text-sm text-slate-900">{item.nombre}</span>
+                        {aseguradora === key && <CheckCircle2 className="w-4 h-4 text-blue-600"/>}
+                      </div>
+                      <span className="text-xs text-blue-600 font-medium mt-1">{item.descuento}</span>
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Paso 2: Elegir Tratamiento */}
             <div>
               <label className="block text-sm font-bold text-slate-900 mb-3">
-                2. ¿Qué tratamiento necesitas cotizar?
+                {aceptaSeguros ? '2.' : '1.'} ¿Qué tratamiento necesitas cotizar?
               </label>
               <div className="space-y-2.5">
                 {TRATAMIENTOS.map((trat) => {
-                  const precioConSeguro = Math.round(trat.precioBase * (1 - seguroActual.cobertura));
+                  const precioConSeguro = Math.round(trat.precioBase * (1 - coberturaActiva));
                   const seleccionado = tratamientoId === trat.id;
                   return (
                     <button
@@ -343,10 +376,13 @@ export default function App() {
                             {trat.tag}
                           </span>
                         </div>
-                        <p className="text-xs text-slate-500 mt-0.5">Duración aprox: {trat.tiempo}</p>
+                        <p className="text-xs text-slate-500 mt-0.5">
+                          Duración aprox: {trat.tiempo}
+                          {!aceptaSeguros && <span className="ml-2 text-blue-600 font-medium">• Precio directo sin seguro</span>}
+                        </p>
                       </div>
                       <div className="text-right shrink-0">
-                        {seguroActual.cobertura > 0 && (
+                        {coberturaActiva > 0 && (
                           <p className="text-xs text-slate-400 line-through">
                             ${trat.precioBase.toLocaleString()} MXN
                           </p>
@@ -401,22 +437,35 @@ export default function App() {
                     Resumen de tu Cotización en {clinicaNombre}
                   </span>
                   <h4 className="font-extrabold text-xl text-slate-900 mt-1">{tratamientoActual.nombre}</h4>
-                  <p className="text-xs text-slate-500 mt-0.5">Modalidad: {seguroActual.nombre}</p>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    Modalidad: {aceptaSeguros ? seguroActual.nombre : 'Precio directo sin seguro'}
+                  </p>
                 </div>
 
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 space-y-2">
-                  <div className="flex justify-between text-xs text-slate-500">
-                    <span>Precio Regular de Lista:</span>
-                    <span>${tratamientoActual.precioBase.toLocaleString()} MXN</span>
-                  </div>
-                  {ahorro > 0 && (
-                    <div className="flex justify-between text-xs text-emerald-600 font-semibold">
-                      <span>Cobertura Estimada de tu Seguro:</span>
-                      <span>- ${ahorro.toLocaleString()} MXN</span>
+                  {aceptaSeguros ? (
+                    <>
+                      <div className="flex justify-between text-xs text-slate-500">
+                        <span>Precio Regular de Lista:</span>
+                        <span>${tratamientoActual.precioBase.toLocaleString()} MXN</span>
+                      </div>
+                      {ahorro > 0 && (
+                        <div className="flex justify-between text-xs text-emerald-600 font-semibold">
+                          <span>Cobertura Estimada de tu Seguro:</span>
+                          <span>- ${ahorro.toLocaleString()} MXN</span>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <div className="flex justify-between text-xs text-slate-500">
+                      <span>Modalidad:</span>
+                      <span className="font-medium text-slate-700">Precio directo sin seguro</span>
                     </div>
                   )}
                   <div className="flex justify-between items-baseline pt-2 border-t border-slate-200">
-                    <span className="font-bold text-sm text-slate-900">Tu Copago Total:</span>
+                    <span className="font-bold text-sm text-slate-900">
+                      {aceptaSeguros ? 'Tu Copago Total:' : 'Precio Total:'}
+                    </span>
                     <span className="text-2xl font-extrabold text-blue-600">
                       ${copagoFinal.toLocaleString()} MXN
                     </span>
@@ -444,7 +493,7 @@ export default function App() {
                     />
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className={`grid gap-3 ${aceptaSeguros ? 'grid-cols-2' : 'grid-cols-1'}`}>
                     <div>
                       <label className="block text-xs font-bold text-slate-700 mb-1">
                         WhatsApp *
@@ -458,19 +507,21 @@ export default function App() {
                         className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-xl focus:outline-none focus:border-blue-600"
                       />
                     </div>
-                    <div>
-                      <label className="block text-xs font-bold text-slate-700 mb-1">
-                        No. Póliza / Membresía
-                      </label>
-                      <input
-                        type="text"
-                        value={polizaInput}
-                        onChange={(e) => setPolizaInput(e.target.value)}
-                        placeholder={aseguradora === 'particular' ? 'No aplica' : 'Ej. DTG-99412'}
-                        disabled={aseguradora === 'particular'}
-                        className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-xl focus:outline-none focus:border-blue-600 disabled:bg-slate-100"
-                      />
-                    </div>
+                    {aceptaSeguros && (
+                      <div>
+                        <label className="block text-xs font-bold text-slate-700 mb-1">
+                          No. Póliza / Membresía
+                        </label>
+                        <input
+                          type="text"
+                          value={polizaInput}
+                          onChange={(e) => setPolizaInput(e.target.value)}
+                          placeholder={aseguradora === 'particular' ? 'No aplica' : 'Ej. DTG-99412'}
+                          disabled={aseguradora === 'particular'}
+                          className="w-full px-3.5 py-2.5 text-sm border border-slate-300 rounded-xl focus:outline-none focus:border-blue-600 disabled:bg-slate-100"
+                        />
+                      </div>
+                    )}
                   </div>
 
                   <div>
@@ -500,7 +551,7 @@ export default function App() {
                   type="submit"
                   className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-emerald-600/20 transition flex items-center justify-center gap-2"
                 >
-                  <Lock className="w-4 h-4"/> Agendar y Pre-Validar Seguro Ahora
+                  <Lock className="w-4 h-4"/> {aceptaSeguros ? 'Agendar y Pre-Validar Seguro Ahora' : 'Agendar Cita Ahora'}
                 </button>
                 <p className="text-[11px] text-center text-slate-500">
                   Recibirás confirmación automática en tu WhatsApp y recordatorio antes de tu cita.
@@ -518,8 +569,17 @@ export default function App() {
                   Gracias <span className="font-semibold">{pacienteNombre}</span>. Hemos registrado tu solicitud para <span className="font-semibold">{tratamientoActual.nombre}</span> el <span className="font-semibold">{horarioSeleccionado}</span>.
                 </p>
                 <div className="bg-slate-50 p-4 rounded-xl border border-slate-200 text-xs text-left space-y-1.5">
-                  <p><strong>Aseguradora:</strong> {seguroActual.nombre} {polizaInput && `(${polizaInput})`}</p>
-                  <p><strong>Copago bloqueado:</strong> ${copagoFinal.toLocaleString()} MXN {aplicaMsi && `(Disponible a ${plazoMsi} MSI)`}</p>
+                  {aceptaSeguros ? (
+                    <>
+                      <p><strong>Aseguradora:</strong> {seguroActual.nombre} {polizaInput && `(${polizaInput})`}</p>
+                      <p><strong>Copago bloqueado:</strong> ${copagoFinal.toLocaleString()} MXN {aplicaMsi && `(Disponible a ${plazoMsi} MSI)`}</p>
+                    </>
+                  ) : (
+                    <>
+                      <p><strong>Modalidad:</strong> Precio directo sin seguro</p>
+                      <p><strong>Precio bloqueado:</strong> ${copagoFinal.toLocaleString()} MXN {aplicaMsi && `(Disponible a ${plazoMsi} MSI)`}</p>
+                    </>
+                  )}
                   <p><strong>Notificación:</strong> Enviada automáticamente por WhatsApp Cloud API.</p>
                 </div>
                 <button
