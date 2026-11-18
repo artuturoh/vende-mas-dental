@@ -45,7 +45,9 @@ export default function App() {
   // 1. Leer parámetros de la URL (?clinica=Nombre&zona=Zapopan)
   const [clinicaNombre, setClinicaNombre] = useState('Clínica Dental Sonrisa');
   const [zonaNombre, setZonaNombre] = useState('Guadalajara & Zapopan');
-  const [showAdminBar, setShowAdminBar] = useState(true);
+  const [showAdminBar, setShowAdminBar] = useState(
+    () => new URLSearchParams(window.location.search).get('admin') === '1'
+  );
   const [copied, setCopied] = useState(false);
 
   // Estados del Cotizador y Agenda
@@ -531,6 +533,10 @@ export default function App() {
             )}
           </div>
         </div>
+
+        <p className="mt-8 text-center text-xs text-slate-500 max-w-4xl mx-auto leading-relaxed">
+          *Nota: Los precios, porcentajes de cobertura y descuentos mostrados en este simulador son ilustrativos de ejemplo. En tu clínica configuramos el cotizador exactamente con tu tabulador real, convenios vigentes y promociones propias.
+        </p>
       </section>
 
       {/* SECCIÓN B2B PARA EL DENTISTA: CALCULADORA DE REACTIVACIÓN Y PAQUETES */}
@@ -661,7 +667,9 @@ export default function App() {
                     <span className="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded font-semibold">Precio Fundador</span>
                   </div>
                   <h4 className="text-xl font-bold">Cotizador + WhatsApp CRM + Ads</h4>
-                  <p className="text-xs text-slate-300">El sistema completo que estás probando en esta página.</p>
+                  <p className="text-xs text-slate-300">
+                    El sistema completo que estás probando aquí, con <strong>diseño 100% a la medida</strong> adaptado a los colores e identidad visual de tu clínica.
+                  </p>
                   <div className="pt-2 border-t border-slate-700">
                     <div className="flex items-baseline gap-2">
                       <p className="text-2xl font-extrabold text-white">$12,000 <span className="text-xs font-normal text-slate-300">MXN Setup</span></p>
@@ -673,10 +681,11 @@ export default function App() {
                     </div>
                   </div>
                   <ul className="space-y-2.5 text-xs text-slate-200 pt-3">
-                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> <strong>Cotizador interactivo de Seguros</strong> (Dentegra, Centauro)</li>
-                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> Pasarela de pagos con MSI bancarios</li>
-                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> <strong>Base de datos + Reactivación WhatsApp</strong></li>
-                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> Gestión mensual de campañas en Google/Meta Ads</li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <span><strong>Diseño 100% a la medida:</strong> Adaptado al estilo, colores e identidad visual que más le guste a tu clínica.</span></li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <span><strong>Cotizador interactivo de Seguros</strong> (Dentegra, Centauro) con tu tabulador real.</span></li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <span><strong>Pasarela de pagos con MSI y compras impulsivas 24/7:</strong> En Buen Fin, Black Friday o bonificaciones bancarias, tus pacientes compran desde su celular a cualquier hora — cierra ventas sin estar abierto, sin cotizar a mano y sin visitas presenciales.</span></li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <span><strong>Presencia digital de alto nivel:</strong> Posiciona tu clínica en el canal principal de ventas hoy y a futuro frente a una competencia con páginas obsoletas.</span></li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <span><strong>Base de datos + Reactivación WhatsApp</strong> y gestión mensual en Google/Meta Ads.</span></li>
                   </ul>
                 </div>
               </div>
