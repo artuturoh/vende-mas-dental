@@ -700,20 +700,24 @@ export default function App() {
                   <p className="text-xs text-slate-300">Ideal para modernizar la recepción digital de la clínica.</p>
                   <div className="pt-2 border-t border-slate-700">
                     <div className="flex items-baseline gap-2">
-                      <p className="text-2xl font-extrabold text-white">$5,000 <span className="text-xs font-normal text-slate-400">MXN Setup</span></p>
+                      <p className="text-2xl font-extrabold text-white">$5,000 <span className="text-xs font-normal text-slate-400">MXN pago único</span></p>
                       <span className="text-xs text-slate-400 line-through">Reg. $9,000</span>
                     </div>
-                    <div className="mt-1 flex items-baseline gap-1.5 text-xs text-emerald-400 font-semibold">
-                      <span>+ $950 MXN / mes</span>
-                      <span className="text-slate-400 line-through font-normal">(Reg. $1,990/mes)</span>
-                    </div>
+                    <p className="mt-1 text-xs text-emerald-400 font-semibold">
+                      Sin mensualidad
+                    </p>
                   </div>
                   <ul className="space-y-2.5 text-xs text-slate-300 pt-3">
-                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> Landing Page Premium personalizada</li>
-                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> Agenda automatizada 24/7</li>
-                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> Posicionamiento local en Google Maps</li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> Landing Page Premium</li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> Agenda automatizada 24/7</li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> Google Business Profile + Maps</li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> Botón de WhatsApp directo</li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> SEO básico</li>
                   </ul>
                 </div>
+                <p className="mt-5 pt-3 border-t border-slate-700/70 text-[11px] text-slate-400 leading-relaxed">
+                  *Primer año de dominio y hosting incluido; después $1,500 MXN/año de renovación.
+                </p>
               </div>
 
               {/* Paquete Intermedio (Estrella) */}
@@ -726,7 +730,7 @@ export default function App() {
                     <span className="text-xs font-bold uppercase text-blue-300">2. Paquete Máquina de Ventas</span>
                     <span className="text-[10px] bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 px-2 py-0.5 rounded font-semibold">Precio Fundador</span>
                   </div>
-                  <h4 className="text-xl font-bold">Cotizador + WhatsApp CRM + Ads</h4>
+                  <h4 className="text-xl font-bold">Cotizador + Pagos MSI + WhatsApp</h4>
                   <p className="text-xs text-slate-300">
                     El sistema completo que estás probando aquí, con <strong>diseño 100% a la medida</strong> adaptado a los colores e identidad visual de tu clínica.
                   </p>
@@ -735,18 +739,32 @@ export default function App() {
                       <p className="text-2xl font-extrabold text-white">$12,000 <span className="text-xs font-normal text-slate-300">MXN Setup</span></p>
                       <span className="text-xs text-slate-400 line-through">Reg. $20,000</span>
                     </div>
-                    <div className="mt-1 flex items-baseline gap-1.5 text-xs text-emerald-400 font-semibold">
-                      <span>+ $3,500 MXN / mes</span>
-                      <span className="text-slate-400 line-through font-normal">(Reg. $8,900/mes)</span>
-                    </div>
+                    <p className="mt-1 text-xs text-emerald-400 font-semibold">
+                      Sin mensualidad obligatoria ($0 a $2,500/mes según opcionales)
+                    </p>
                   </div>
                   <ul className="space-y-2.5 text-xs text-slate-200 pt-3">
-                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <span><strong>Diseño 100% a la medida:</strong> Adaptado al estilo, colores e identidad visual que más le guste a tu clínica.</span></li>
-                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <span><strong>Cotizador interactivo de Seguros</strong> (Dentegra, Centauro) con tu tabulador real.</span></li>
-                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <span><strong>Pasarela de pagos con MSI y compras impulsivas 24/7:</strong> En Buen Fin, Black Friday o bonificaciones bancarias, tus pacientes compran desde su celular a cualquier hora — cierra ventas sin estar abierto, sin cotizar a mano y sin visitas presenciales.</span></li>
-                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <span><strong>Presencia digital de alto nivel:</strong> Posiciona tu clínica en el canal principal de ventas hoy y a futuro frente a una competencia con páginas obsoletas.</span></li>
-                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <span><strong>Base de datos + Reactivación WhatsApp</strong> y gestión mensual en Google/Meta Ads.</span></li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <span>Todo lo incluido en <strong>Básico</strong> + diseño 100% a la medida</span></li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <span><strong>Cotizador interactivo de seguros</strong> (Dentegra, Centauro) con tu tabulador real</span></li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <span><strong>Pagos con tarjeta / MSI y compras 24/7:</strong> En Buen Fin o promociones bancarias, tus pacientes compran desde su celular sin visitas ni cotizaciones manuales</span></li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <span><strong>Base de pacientes y reactivación por WhatsApp</strong></span></li>
                   </ul>
+
+                  <div className="mt-4 pt-3 border-t border-slate-700/80 space-y-2">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-blue-300">
+                      Opcionales independientes (elige uno, ambos o ninguno):
+                    </p>
+                    <div className="bg-slate-900/50 border border-slate-700/80 rounded-lg p-2.5 text-[11px] text-slate-200 space-y-1.5">
+                      <div className="flex justify-between gap-2">
+                        <span>• <strong>Soporte a la página</strong> (cambios, actualización de seguros y soporte técnico)</span>
+                        <span className="text-emerald-400 font-bold shrink-0">+$1,000/mes</span>
+                      </div>
+                      <div className="flex justify-between gap-2">
+                        <span>• <strong>Manejo de redes sociales</strong> (campañas Google y Meta + reporte mensual)</span>
+                        <span className="text-emerald-400 font-bold shrink-0">+$1,500/mes</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -764,16 +782,28 @@ export default function App() {
                       <p className="text-2xl font-extrabold text-white">$19,000 <span className="text-xs font-normal text-slate-400">MXN Setup</span></p>
                       <span className="text-xs text-slate-400 line-through">Reg. $35,000</span>
                     </div>
-                    <div className="mt-1 flex items-baseline gap-1.5 text-xs text-emerald-400 font-semibold">
-                      <span>+ $4,500 MXN / mes</span>
-                      <span className="text-slate-400 line-through font-normal">(Reg. $9,900/mes)</span>
-                    </div>
+                    <p className="mt-1 text-xs text-emerald-400 font-semibold">
+                      + $1,500 MXN / mes base
+                    </p>
                   </div>
                   <ul className="space-y-2.5 text-xs text-slate-300 pt-3">
-                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> Todo lo incluido en Máquina de Ventas</li>
-                    <li className="flex items-center gap-2"><Camera className="w-4 h-4 text-amber-400 shrink-0"/> <strong>Sesión presencial de foto y video DSLR</strong> en tu clínica</li>
-                    <li className="flex items-center gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0"/> Creativos publicitarios con tu equipo real</li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> Todo lo incluido en <strong>Intermedio</strong></li>
+                    <li className="flex items-start gap-2"><Camera className="w-4 h-4 text-amber-400 shrink-0 mt-0.5"/> <span><strong>Sesión presencial de foto y video</strong> en tu clínica</span></li>
+                    <li className="flex items-start gap-2"><Check className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5"/> <strong>Soporte técnico con cambios ilimitados</strong> a la página</li>
                   </ul>
+
+                  <div className="mt-4 pt-3 border-t border-slate-700/80 space-y-2">
+                    <p className="text-[11px] font-bold uppercase tracking-wider text-amber-300">
+                      Servicio opcional:
+                    </p>
+                    <div className="bg-slate-900/50 border border-slate-700/80 rounded-lg p-2.5 text-[11px] text-slate-200">
+                      <div className="flex justify-between gap-2">
+                        <span>• <strong>Manejo de redes sociales con reels</strong> (campañas Google y Meta + reporte mensual)</span>
+                        <span className="text-emerald-400 font-bold shrink-0">+$1,500/mes</span>
+                      </div>
+                      <p className="text-slate-400 mt-1 text-[10px]">Total con redes: $3,000 MXN/mes</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
